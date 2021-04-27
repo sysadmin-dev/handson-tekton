@@ -65,7 +65,7 @@ spec:
         - name: gensource
           mountPath: /gensource
       securityContext: 
-        privileged: false
+        privileged: true
     - name: push
       image: quay.io/buildah/stable
       command: ['buildah', 'push', '--creds=$(params.user):$(params.pass)', '--tls-verify=false', '$(params.registry)/$(params.user)/$(params.image-name)', 'docker://$(params.registry)/$(params.user)/$(params.image-name)']
@@ -73,7 +73,7 @@ spec:
         - name: varlibcontainers
           mountPath: /var/lib/containers
       securityContext:
-        privileged: false
+        privileged: true
   volumes:
     - name: varlibcontainers
       emptyDir: {}
